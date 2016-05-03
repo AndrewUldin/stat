@@ -11,16 +11,18 @@ body {
     background-position: left top;
     color: #37393A;
     font-family: 'Roboto Slab', serif;
-    padding: 30px;
 }
 
 .container {
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%,-50%,0);
+    max-width: 1240px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    &__page {
+        border: 1px solid blue;
+        @include cf();
+    }
 }
 
 @include respond-to(desktop) {

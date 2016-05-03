@@ -29775,10 +29775,20 @@ function wrappy (fn, cb) {
 'use strict';
 
 module.exports = {
-    table: require('./table')
+    table: require('./table'),
+    map: require('./map')
 };
 
-},{"./table":"/Users/uldin/www/stat/src/data/table.js"}],"/Users/uldin/www/stat/src/data/table.js":[function(require,module,exports){
+},{"./map":"/Users/uldin/www/stat/src/data/map.js","./table":"/Users/uldin/www/stat/src/data/table.js"}],"/Users/uldin/www/stat/src/data/map.js":[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    title: 'Валовой региональный продукт',
+    max: '1 792 млн. р.',
+    min: '46 млн. р.'
+};
+
+},{}],"/Users/uldin/www/stat/src/data/table.js":[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -29881,8 +29891,10 @@ var App = React.createClass({
     render: function() {
         return (
             React.createElement("div", {className: "container"}, 
-                React.createElement(TableBlock, {data: this.props.data.table}), 
-                React.createElement(Map, null)
+                React.createElement("div", {className: "container__page"}, 
+                    React.createElement(TableBlock, {data: this.props.data.table}), 
+                    React.createElement(Map, {data: this.props.data.map})
+                )
             )
         );
     }
@@ -29995,15 +30007,86 @@ var TableNode = React.createClass({
 
 var Map = React.createClass({
     displayName: 'Map',
+    componentDidMount: function() {
+    },
+    componentWillUnmount: function() {
+        var $this = $(ReactDOM.findDOMNode(this));
+        var $svg = $this.find('svg');
+        $svg.off('mouseover', '.selectable-region');
+        $svg.off('mouseout', '.selectable-region');
+        $svg.off('click', '.selectable-region');
+        $svg.off('mouseover', '.region-name');
+        $svg.off('mouseout', '.region-name');
+        $svg.off('click', '.region-name');
+        $svg.off('mousemove');
+    },
+    handlerOver: function(e) {
+        var $elem = $(e.currentTarget);
+        var $svg = $(e.delegateTarget);
+        var id = $elem.data('region');
+        var $name = $svg.find('.region-name[data-region='+id+']');
+        var $region = $svg.find('.selectable-region[data-region='+id+']');
+        if ($name.length > 0) $name.attr('class', $name.attr('class').replace(' active-text', '') + ' active-text');
+        if ($region.length > 0) $region.attr('class', $region.attr('class').replace(' active-region', '') + ' active-region');
+        $('#pattern'+id).attr('class', 'original-color changed-color');
+        $('.map__card_state_hidden').removeClass('map__card_state_hidden');
+        this.redrawCard($region);
+    },
+    handlerOut: function(e) {
+        var $elem = $(e.currentTarget);
+        var $svg = $(e.delegateTarget);
+        var id = $elem.data('region');
+        var $name = $svg.find('.region-name[data-region='+id+']');
+        var $region = $svg.find('.selectable-region[data-region='+id+']');
+        if ($name.length > 0) $name.attr('class', $name.attr('class').replace(' active-text', ''));
+        if ($region.length > 0) $region.attr('class', $region.attr('class').replace(' active-region', ''));
+        $('#pattern'+id).attr('class', 'original-color');
+        $('.map__card').addClass('map__card_state_hidden');
+    },
+    handlerClick: function(e) {
+        console.log('click', $(e.currentTarget).data('region'));
+    },
+    attachHandlers: function() {
+        var $this = $(ReactDOM.findDOMNode(this));
+        var $svg = $this.find('svg');
+        $svg.on('mouseover', '.selectable-region', this.handlerOver);
+        $svg.on('mouseout', '.selectable-region', this.handlerOut);
+        $svg.on('click', '.selectable-region', this.handlerClick);
+        $svg.on('mouseover', '.region-name', this.handlerOver);
+        $svg.on('mouseout', '.region-name', this.handlerOut);
+        $svg.on('click', '.region-name', this.handlerClick);
+        $svg.on('mousemove', this.repositionCard);
+        $('.map__card').on('mouseover', this.repositionCard);
+    },
+    redrawCard: function(elem) {
+        var value = elem.data('value');
+        var textPlacer = $('.card-text-placer');
+            textPlacer.text(value);
+        var newLeft = (88 - textPlacer[0].getComputedTextLength()) / 2; // magic number!! width of card
+            textPlacer.attr('transform', 'translate('+newLeft+' 16.72)');
+    },
+    repositionCard: function(e) {
+        var map = $('.map').offset();
+        var newX = e.clientX - map.left - 44; // magic numbers!! width of card / 2
+        var newY = e.clientY - map.top + $(window).scrollTop() - 50; // magic numbers!! height of card
+        $('.map__card').css('transform', 'translate3d('+newX+'px, '+newY+'px, 0)');
+    },
     render: function() {
         return (
             React.createElement("div", {className: "map"}, 
+                React.createElement("h4", null, this.props.data.title), 
+                React.createElement("div", {className: "map__legend"}, 
+                    React.createElement(Isvg, {src: "images/legend.svg", uniquifyIDs: false}), 
+                    React.createElement("div", {className: "map__legend-label map__legend-label_num_1"}, this.props.data.max), 
+                    React.createElement("div", {className: "map__legend-label map__legend-label_num_2"}, this.props.data.min)
+                ), 
                 React.createElement("div", {className: "map__svg"}, 
-                    React.createElement(Isvg, {src: "images/map.svg", uniquifyIDs: false}, 
-                        "//Here's some optional content for browsers that don't support XHR or inline" + ' ' +
-                        "//SVGs. You can use other React components here too. Here, I'll show you.", 
+                    React.createElement(Isvg, {src: "images/map.svg", uniquifyIDs: false, onLoad: this.attachHandlers}, 
                         React.createElement("img", {src: "images/map.png"})
                     )
+                ), 
+                React.createElement("div", {className: "map__card map__card_state_hidden"}, 
+                    React.createElement(Isvg, {src: "images/card.svg", uniquifyIDs: false})
                 )
             )
         );

@@ -1,0 +1,26 @@
+<svg id="CARD" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.21 37.57">
+  <defs>
+    <style>
+      .card-1 {
+        fill: #2b2b2b;
+      }
+
+      .card-2 {
+        fill: #dda800;
+      }
+
+      .card-3 {
+        font-size: 13px;
+        fill: #332e28;
+        font-family: 'Roboto Slab', serif;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <title>card</title>
+  <g id="ПОКАЗАТЕЛЬ_ВПР" class="card">
+    <polygon class="card-1" points="0 15.56 0 28.3 37.57 28.3 44.1 31.68 50.64 28.3 88 28.3 88 15.56 0 15.56"/>
+    <polygon class="card-2" points="0 0 0 24.58 37.57 24.58 44.1 31.12 50.64 24.58 88.21 24.58 88.21 0 0 0"/>
+    <text class="card-3 card-text-placer" transform="translate(0 16.72)">1 792 048 185</text>
+  </g>
+</svg>

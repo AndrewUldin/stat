@@ -1,14 +1,57 @@
 .map {
     box-sizing: border-box;
-    width: 50%;
-    height: 100%;
+    width: 53%;
     float: left;
     padding-left: 20px;
+    position: relative;
 
-    &__svg {
-        margin: 120px auto 0;
-        width: 628px;
-        height: 681px;
+    h4 {
+        margin-left: 50px;
     }
 
+    &__svg {
+        margin: 30px auto 0;
+        width: 100%;
+        max-width: 628px;
+        height: 681px;
+        transform: translate3d( 0, 0, 0) perspective(1px) scale(1);
+    }
+
+    &__card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 1;
+        transition: opacity .5s ease;
+
+        &_state_hidden {
+            opacity: 0;
+        }
+        svg {
+            width: 88px;
+        }
+    }
+
+    &__legend {
+        position: relative;
+        height: 40px;
+        margin-left: 50px;
+        svg {
+            width: 270px;
+        }
+
+        &-label {
+            position: absolute;
+            top: 20px;
+            line-height: 20px;
+            font-size: 0.8667rem;
+
+            &_num_1 {
+                left: 0;
+            }
+            &_num_2 {
+                left: 230px;
+            }
+        }
+    }
 }

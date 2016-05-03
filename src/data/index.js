@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-    table: require('./table')
+    table: require('./table'),
+    map: require('./map')
 };
