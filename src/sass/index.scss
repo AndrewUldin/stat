@@ -1,0 +1,31 @@
+@import 'modules/colors';
+@import 'modules/vars';
+@import 'modules/mixins';
+@import 'modules/common';
+@import 'modules/table';
+@import 'modules/map';
+
+body {
+    background-color: #ffffff;
+    background-image: url('../images/background.png');
+    background-position: left top;
+    color: #37393A;
+    font-family: 'Roboto Slab', serif;
+    padding: 30px;
+}
+
+.container {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0);
+}
+
+@include respond-to(desktop) {
+    .container {
+        width: 95%;
+        height: 95%;
+    }
+}

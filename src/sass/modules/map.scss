@@ -1,0 +1,14 @@
+.map {
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    float: left;
+    padding-left: 20px;
+
+    &__svg {
+        margin: 120px auto 0;
+        width: 628px;
+        height: 681px;
+    }
+
+}
