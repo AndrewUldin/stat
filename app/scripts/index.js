@@ -29771,15 +29771,171 @@ function wrappy (fn, cb) {
   }
 }
 
+},{}],"/Users/uldin/www/stat/src/data/card.js":[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    regions: {
+        1: {
+            title: 'Краснодарский край',
+            position: 'Глава области',
+            population: '5454',
+            vrp: '301436',
+            index: '58,79',
+            head: 'Александр Николаевич Ткачёв',
+            period: '01.2001',
+            periodEnd: '04.2015',
+            flats: '42060',
+            auto: '298'
+        },
+        2: {
+            title: 'Ростовская область',
+            position: 'Глава области',
+            population: '4242',
+            vrp: '217298',
+            index: '49,74',
+            head: 'Василий Юрьевич Голубев',
+            period: '06.2010',
+            flats: '49229',
+            auto: '297'
+        },
+        3: {
+            title: 'Волгоградская область',
+            position: 'Глава области',
+            population: '2557',
+            vrp: '235290',
+            index: '43,15',
+            head: 'Андрей Иванович Бочаров',
+            period: '09.2014',
+            flats: '40142',
+            auto: '265'
+        },
+        4: {
+            title: 'Ставропольский край',
+            position: 'Глава области',
+            population: '2799',
+            vrp: '171296',
+            index: '44,51',
+            head: 'Владимир Владимирович Владимиров',
+            period: '09.2014',
+            flats: '32909',
+            auto: '269'
+        },
+        5: {
+            title: 'Республика Дагестан',
+            position: 'Глава области',
+            population: '2990',
+            vrp: '145352',
+            index: '33,75',
+            head: 'Рамазан Гаджимурадович Абдулатипов',
+            period: '09.2013',
+            flats: '22785',
+            auto: '165'
+        },
+        6: {
+            title: 'Астраханская область',
+            position: 'Глава области',
+            population: '1021',
+            vrp: '263512',
+            index: '42,11',
+            head: 'Александр Александрович Жилкин',
+            period: '12.2004',
+            flats: '38891',
+            auto: '247'
+        },
+        7: {
+            title: 'Чеченская Республика',
+            position: 'Глава области',
+            population: '1370',
+            vrp: '88462',
+            index: '31,42',
+            head: 'Рамзан Ахматович Кадыров',
+            period: '04.2007',
+            flats: '42185',
+            auto: '144'
+        },
+        8: {
+            title: 'Республика Северная Осетия',
+            position: 'Глава области',
+            population: '706',
+            vrp: '159051',
+            index: '37,98',
+            head: 'Таймураз Дзамбекович Мамсуров',
+            period: '06.2005',
+            periodEnd: '06.2015',
+            flats: '36088',
+            auto: '259'
+        },
+        9: {
+            title: 'Кабардино-Балкарская Республика',
+            position: 'Глава области',
+            population: '861',
+            vrp: '131866',
+            index: '33,2',
+            head: 'Юрий Александрович Коков',
+            period: '10.2014',
+            flats: '37530',
+            auto: '218'
+        },
+        10: {
+            title: 'Республика Адыгея',
+            position: 'Глава области',
+            population: '449',
+            vrp: '161677',
+            index: '41,92',
+            head: 'Аслан Китович Тхакушинов',
+            period: '12.2006',
+            flats: '32267',
+            auto: '276'
+        },
+        11: {
+            title: 'Карачаево-Черкесская Республика',
+            position: 'Глава области',
+            population: '469',
+            vrp: '133175',
+            index: '31,13',
+            head: 'Рашид Бориспиевич Темрезов',
+            period: '04.2011',
+            flats: '40157',
+            auto: '215'
+        },
+        12: {
+            title: 'Республика Ингушетия',
+            position: 'Глава области',
+            population: '464',
+            vrp: '100911',
+            index: '30,16',
+            head: 'Юнус-бек Баматгиреевич Евкуров',
+            period: '10.2008',
+            flats: '50627',
+            auto: '160'
+        },
+        13: {
+            title: 'Республика Калмыкия',
+            position: 'Глава области',
+            population: '281',
+            vrp: '145318',
+            index: '25,41',
+            head: 'Алексей Маратович Орлов',
+            period: '10.2010',
+            flats: '29311',
+            auto: '284'
+        }
+    }
+};
+
+
 },{}],"/Users/uldin/www/stat/src/data/index.js":[function(require,module,exports){
 'use strict';
 
 module.exports = {
     table: require('./table'),
-    map: require('./map')
+    map: require('./map'),
+    card: require('./card')
 };
 
-},{"./map":"/Users/uldin/www/stat/src/data/map.js","./table":"/Users/uldin/www/stat/src/data/table.js"}],"/Users/uldin/www/stat/src/data/map.js":[function(require,module,exports){
+
+},{"./card":"/Users/uldin/www/stat/src/data/card.js","./map":"/Users/uldin/www/stat/src/data/map.js","./table":"/Users/uldin/www/stat/src/data/table.js"}],"/Users/uldin/www/stat/src/data/map.js":[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -29788,228 +29944,225 @@ module.exports = {
     min: '46 млн. р.'
 };
 
+
 },{}],"/Users/uldin/www/stat/src/data/table.js":[function(require,module,exports){
 'use strict';
 
 module.exports = {
-    title: 'Рост средних доходов и\u00A0расходов населения за\u00A0год в\u00A02014 году',
+    title: 'Рост средних доходов и расходов населения за год в 2014 году',
     legend: {
         income: 'Доход',
         outcome: 'Расход'
     },
-    rows: [
-        {
-            id: 1,
-            title: 'Республика Адыгея',
-            income: 19.13,
-            outcome: 9.72
-        },
-        {
-            id: 2,
-            title: 'Чеченская республика',
-            income: 15.13,
-            outcome: 18.81
-        },
-        {
-            id: 3,
-            title: 'Астраханская область',
-            income: 12.09,
-            outcome: 10.07
-        },
-        {
-            id: 4,
-            title: 'Краснодарский край',
-            income: 11.68,
-            outcome: 14.97
-        },
-        {
-            id: 5,
-            title: 'Республика Северная Осетия',
-            income: 11.42,
-            outcome: 9.71
-        },
-        {
-            id: 6,
-            title: 'Ростовская область',
-            income: 11.24,
-            outcome: 10.67
-        },
-        {
-            id: 7,
-            title: 'Карачаево-Черкесская Республика',
-            income: 9.66,
-            outcome: 6.09
-        },
-        {
-            id: 8,
-            title: 'Республика Калмыкия',
-            income: 9.61,
-            outcome: 10.63
-        },
-        {
-            id: 9,
-            title: 'Ставропольский край',
-            income: 9.22,
-            outcome: 7.93
-        },
-        {
-            id: 10,
-            title: 'Кабардино-Балкарская Республика',
-            income: 8.64,
-            outcome: 11.43
-        },
-        {
-            id: 11,
-            title: 'Волгоградская область',
-            income: 8.34,
-            outcome: 7.92
-        },
-        {
-            id: 12,
-            title: 'Республика Дагестан',
-            income: 7.86,
-            outcome: 11.61
-        },
-        {
-            id: 13,
-            title: 'Республика Ингушетия',
-            income: 3.80,
-            outcome: 9.45
-        }
-    ]
+    rows: [{
+        id: 1,
+        title: 'Республика Адыгея',
+        income: 19.13,
+        outcome: 9.72
+    }, {
+        id: 2,
+        title: 'Чеченская республика',
+        income: 15.13,
+        outcome: 18.81
+    }, {
+        id: 3,
+        title: 'Астраханская область',
+        income: 12.09,
+        outcome: 10.07
+    }, {
+        id: 4,
+        title: 'Краснодарский край',
+        income: 11.68,
+        outcome: 14.97
+    }, {
+        id: 5,
+        title: 'Республика Северная Осетия',
+        income: 11.42,
+        outcome: 9.71
+    }, {
+        id: 6,
+        title: 'Ростовская область',
+        income: 11.24,
+        outcome: 10.67
+    }, {
+        id: 7,
+        title: 'Карачаево-Черкесская Республика',
+        income: 9.66,
+        outcome: 6.09
+    }, {
+        id: 8,
+        title: 'Республика Калмыкия',
+        income: 9.61,
+        outcome: 10.63
+    }, {
+        id: 9,
+        title: 'Ставропольский край',
+        income: 9.22,
+        outcome: 7.93
+    }, {
+        id: 10,
+        title: 'Кабардино-Балкарская Республика',
+        income: 8.64,
+        outcome: 11.43
+    }, {
+        id: 11,
+        title: 'Волгоградская область',
+        income: 8.34,
+        outcome: 7.92
+    }, {
+        id: 12,
+        title: 'Республика Дагестан',
+        income: 7.86,
+        outcome: 11.61
+    }, {
+        id: 13,
+        title: 'Республика Ингушетия',
+        income: 3.80,
+        outcome: 9.45
+    }]
 };
 
+
 },{}],"/Users/uldin/www/stat/src/js/App.jsx":[function(require,module,exports){
+'use strict';
+
+var _typeof5 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _typeof4 = typeof Symbol === "function" && _typeof5(Symbol.iterator) === "symbol" ? function (obj) {
+    return typeof obj === "undefined" ? "undefined" : _typeof5(obj);
+} : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof5(obj);
+};
+
+var _typeof3 = typeof Symbol === "function" && _typeof4(Symbol.iterator) === "symbol" ? function (obj) {
+    return typeof obj === "undefined" ? "undefined" : _typeof4(obj);
+} : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof4(obj);
+};
+
+var _typeof2 = typeof Symbol === "function" && _typeof3(Symbol.iterator) === "symbol" ? function (obj) {
+    return typeof obj === "undefined" ? "undefined" : _typeof3(obj);
+} : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof3(obj);
+};
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+var _createClass = function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+}();
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var fs = require('fs');
 var $ = require('jquery-browserify');
 var Isvg = require('react-inlinesvg');
 
-var App = React.createClass({
-    displayName: 'App',
-    render: function() {
-        return (
-            React.createElement("div", {className: "container"}, 
-                React.createElement("div", {className: "container__page"}, 
-                    React.createElement(TableBlock, {data: this.props.data.table}), 
-                    React.createElement(Map, {data: this.props.data.map})
-                )
-            )
-        );
+var App = function (_React$Component) {
+    _inherits(App, _React$Component);
+
+    function App(props, container) {
+        _classCallCheck(this, App);
+
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+
+        _this.props = props;
+        _this.props.currentRegion = 0;
+        _this.container = container;
+        _this.render();
+        return _this;
     }
-});
+
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+            var self = this;
+            ReactDOM.render(React.createElement('div', { className: 'container' }, React.createElement('div', { className: 'container__page' }, React.createElement(Card, {
+                data: this.props.card,
+                currentRegion: this.props.currentRegion
+            }), React.createElement(TableBlock, { data: this.props.table }), React.createElement(Map, {
+                data: this.props.map,
+                reloadData: this.cardReloadDataFunc.bind(self)
+            }))), this.container);
+        }
+    }, {
+        key: 'cardReloadDataFunc',
+        value: function cardReloadDataFunc(newVal) {
+            this.props.currentRegion = newVal;
+            this.render();
+        }
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            ReactDOM.unmountComponentAtNode(this.container);
+        }
+    }]);
+
+    return App;
+}(React.Component);
 
 var TableBlock = React.createClass({
     displayName: 'TableBlock',
-    render: function() {
-        return (
-            React.createElement("div", {className: "table"}, 
-                React.createElement("h2", null, this.props.data.title), 
-                React.createElement("div", {className: "table__legends"}, 
-                    React.createElement("div", {className: "table__legend table__legend_type_income"}, this.props.data.legend.income), 
-                    React.createElement("div", {className: "table__legend table__legend_type_outcome"}, this.props.data.legend.outcome)
-                ), 
-                React.createElement("div", {className: "table__body"}, 
-
-                    React.createElement(TableNode, {data: this.props.data.rows})
-
-                )
-            )
-        );
+    render: function render() {
+        return React.createElement('div', { className: 'table' }, React.createElement('h2', null, this.props.data.title), React.createElement('div', { className: 'table__legends' }, React.createElement('div', { className: 'table__legend table__legend_type_income' }, this.props.data.legend.income), React.createElement('div', { className: 'table__legend table__legend_type_outcome' }, this.props.data.legend.outcome)), React.createElement('div', { className: 'table__body' }, React.createElement(TableNode, { data: this.props.data.rows })));
     }
 });
 
 var TableNode = React.createClass({
     displayName: 'TableNode',
-    componentDidMount: function() {
+    componentDidMount: function componentDidMount() {
         var $this = $(ReactDOM.findDOMNode(this));
         var $table__lines = $this.find('.table__line');
         var onePr = 20 / 100;
         var timeOut = 500;
-            $table__lines.each(function(index, line) {
-                setTimeout(function() {
-                    var value = $(line).data('value');
-                    var newWidth = value / onePr;
-                    $(line).find('.table__bar').css({width: newWidth+'%'});
-                }, timeOut + (index * 50));
-            });
-    },
-    render: function() {
-        var rowsNodes = this.props.data.map(function(line, i) {
-            return(
-                React.createElement("tbody", {key: line.id}, 
-                    React.createElement("tr", null, 
-                        React.createElement("td", null, line.id), 
-                        React.createElement("td", null, line.title), 
-                        React.createElement("td", null, React.createElement("div", {className: "table__legend-text_type_income"}, line.income), React.createElement("div", {className: "table__legend-text_type_outcome"}, line.outcome)), 
-                        React.createElement("td", null, 
-                            React.createElement("div", {className: "table__line table__line_type_income", "data-value": line.income}, React.createElement("div", {className: "table__bar"})), 
-                            React.createElement("div", {className: "table__line table__line_type_outcome", "data-value": line.outcome}, React.createElement("div", {className: "table__bar"})), 
-                            React.createElement("div", {className: "table__grid table__grid_num_1"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_2"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_3"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_4"})
-                        )
-                    ), 
-                    React.createElement("tr", {className: "table__seperator"}, 
-                        React.createElement("td", {colSpan: "4"})
-                    )
-                )
-            );
+        $table__lines.each(function (index, line) {
+            setTimeout(function () {
+                var value = $(line).data('value');
+                var newWidth = value / onePr;
+                $(line).find('.table__bar').css({ width: newWidth + '%' });
+            }, timeOut + index * 50);
         });
-        return(
-            React.createElement("table", {cellpadding: "0", cellspacing: "0", border: "1"}, 
-                React.createElement("tbody", null, 
-                    React.createElement("tr", null, 
-                        React.createElement("td", null), 
-                        React.createElement("td", null), 
-                        React.createElement("td", null), 
-                        React.createElement("td", null, 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_1"}, "0%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_2"}, "5%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_3"}, "10%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_4"}, "15%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_5"}, "20%"), 
-                            React.createElement("div", {className: "table__grid table__grid_num_1"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_2"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_3"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_4"})
-                        )
-                    ), 
-                    React.createElement("tr", {className: "table__seperator"}, 
-                        React.createElement("td", {colSpan: "4"})
-                    )
-                ), 
-                rowsNodes, 
-                React.createElement("tbody", null, 
-                    React.createElement("tr", null, 
-                        React.createElement("td", null), 
-                        React.createElement("td", null), 
-                        React.createElement("td", null), 
-                        React.createElement("td", {className: "table__grid-line_position_bottom"}, 
-                            React.createElement("div", {className: "table__grid table__grid_num_1"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_2"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_3"}), 
-                            React.createElement("div", {className: "table__grid table__grid_num_4"}), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_1"}, "0%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_2"}, "5%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_3"}, "10%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_4"}, "15%"), 
-                            React.createElement("div", {className: "table__grid-number table__grid-number_num_5"}, "20%")
-                        )
-                    )
-                )
-            )
-        );
+    },
+    render: function render() {
+        var rowsNodes = this.props.data.map(function (line, i) {
+            return React.createElement('tbody', { key: line.id }, React.createElement('tr', null, React.createElement('td', null, line.id), React.createElement('td', null, line.title), React.createElement('td', null, React.createElement('div', { className: 'table__legend-text_type_income' }, line.income), React.createElement('div', { className: 'table__legend-text_type_outcome' }, line.outcome)), React.createElement('td', null, React.createElement('div', { className: 'table__line table__line_type_income', 'data-value': line.income }, React.createElement('div', { className: 'table__bar' })), React.createElement('div', { className: 'table__line table__line_type_outcome', 'data-value': line.outcome }, React.createElement('div', { className: 'table__bar' })), React.createElement('div', { className: 'table__grid table__grid_num_1' }), React.createElement('div', { className: 'table__grid table__grid_num_2' }), React.createElement('div', { className: 'table__grid table__grid_num_3' }), React.createElement('div', { className: 'table__grid table__grid_num_4' }))), React.createElement('tr', { className: 'table__seperator' }, React.createElement('td', { colSpan: '4' })));
+        });
+        return React.createElement('table', { cellpadding: '0', cellspacing: '0', border: '1' }, React.createElement('tbody', null, React.createElement('tr', null, React.createElement('td', null), React.createElement('td', null), React.createElement('td', null), React.createElement('td', null, React.createElement('div', { className: 'table__grid-number table__grid-number_num_1' }, '0%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_2' }, '5%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_3' }, '10%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_4' }, '15%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_5' }, '20%'), React.createElement('div', { className: 'table__grid table__grid_num_1' }), React.createElement('div', { className: 'table__grid table__grid_num_2' }), React.createElement('div', { className: 'table__grid table__grid_num_3' }), React.createElement('div', { className: 'table__grid table__grid_num_4' }))), React.createElement('tr', { className: 'table__seperator' }, React.createElement('td', { colSpan: '4' }))), rowsNodes, React.createElement('tbody', null, React.createElement('tr', null, React.createElement('td', null), React.createElement('td', null), React.createElement('td', null), React.createElement('td', { className: 'table__grid-line_position_bottom' }, React.createElement('div', { className: 'table__grid table__grid_num_1' }), React.createElement('div', { className: 'table__grid table__grid_num_2' }), React.createElement('div', { className: 'table__grid table__grid_num_3' }), React.createElement('div', { className: 'table__grid table__grid_num_4' }), React.createElement('div', { className: 'table__grid-number table__grid-number_num_1' }, '0%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_2' }, '5%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_3' }, '10%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_4' }, '15%'), React.createElement('div', { className: 'table__grid-number table__grid-number_num_5' }, '20%')))));
     }
 });
 
 var Map = React.createClass({
     displayName: 'Map',
-    componentDidMount: function() {
-    },
-    componentWillUnmount: function() {
+    componentDidMount: function componentDidMount() {},
+    componentWillUnmount: function componentWillUnmount() {
         var $this = $(ReactDOM.findDOMNode(this));
         var $svg = $this.find('svg');
         $svg.off('mouseover', '.selectable-region');
@@ -30020,33 +30173,35 @@ var Map = React.createClass({
         $svg.off('click', '.region-name');
         $svg.off('mousemove');
     },
-    handlerOver: function(e) {
+    handlerOver: function handlerOver(e) {
         var $elem = $(e.currentTarget);
         var $svg = $(e.delegateTarget);
         var id = $elem.data('region');
-        var $name = $svg.find('.region-name[data-region='+id+']');
-        var $region = $svg.find('.selectable-region[data-region='+id+']');
+        var $name = $svg.find('.region-name[data-region=' + id + ']');
+        var $region = $svg.find('.selectable-region[data-region=' + id + ']');
         if ($name.length > 0) $name.attr('class', $name.attr('class').replace(' active-text', '') + ' active-text');
         if ($region.length > 0) $region.attr('class', $region.attr('class').replace(' active-region', '') + ' active-region');
-        $('#pattern'+id).attr('class', 'original-color changed-color');
+        $('#pattern' + id).attr('class', 'original-color changed-color');
         $('.map__card_state_hidden').removeClass('map__card_state_hidden');
         this.redrawCard($region);
+        this.props.reloadData($(e.currentTarget).data('region'));
     },
-    handlerOut: function(e) {
+    handlerOut: function handlerOut(e) {
         var $elem = $(e.currentTarget);
         var $svg = $(e.delegateTarget);
         var id = $elem.data('region');
-        var $name = $svg.find('.region-name[data-region='+id+']');
-        var $region = $svg.find('.selectable-region[data-region='+id+']');
+        var $name = $svg.find('.region-name[data-region=' + id + ']');
+        var $region = $svg.find('.selectable-region[data-region=' + id + ']');
         if ($name.length > 0) $name.attr('class', $name.attr('class').replace(' active-text', ''));
         if ($region.length > 0) $region.attr('class', $region.attr('class').replace(' active-region', ''));
-        $('#pattern'+id).attr('class', 'original-color');
+        $('#pattern' + id).attr('class', 'original-color');
         $('.map__card').addClass('map__card_state_hidden');
+        this.props.reloadData(undefined);
     },
-    handlerClick: function(e) {
-        console.log('click', $(e.currentTarget).data('region'));
+    handlerClick: function handlerClick(e) {
+        this.props.reloadData($(e.currentTarget).data('region'));
     },
-    attachHandlers: function() {
+    attachHandlers: function attachHandlers() {
         var $this = $(ReactDOM.findDOMNode(this));
         var $svg = $this.find('svg');
         $svg.on('mouseover', '.selectable-region', this.handlerOver);
@@ -30058,61 +30213,91 @@ var Map = React.createClass({
         $svg.on('mousemove', this.repositionCard);
         $('.map__card').on('mouseover', this.repositionCard);
     },
-    redrawCard: function(elem) {
+    redrawCard: function redrawCard(elem) {
         var value = elem.data('value');
         var textPlacer = $('.card-text-placer');
-            textPlacer.text(value);
+        textPlacer.text(value);
         var newLeft = (88 - textPlacer[0].getComputedTextLength()) / 2; // magic number!! width of card
-            textPlacer.attr('transform', 'translate('+newLeft+' 16.72)');
+        textPlacer.attr('transform', 'translate(' + newLeft + ' 16.72)');
     },
-    repositionCard: function(e) {
+    repositionCard: function repositionCard(e) {
         var map = $('.map').offset();
         var newX = e.clientX - map.left - 44; // magic numbers!! width of card / 2
         var newY = e.clientY - map.top + $(window).scrollTop() - 50; // magic numbers!! height of card
-        $('.map__card').css('transform', 'translate3d('+newX+'px, '+newY+'px, 0)');
+        $('.map__card').css('transform', 'translate3d(' + newX + 'px, ' + newY + 'px, 0)');
     },
-    render: function() {
-        return (
-            React.createElement("div", {className: "map"}, 
-                React.createElement("h4", null, this.props.data.title), 
-                React.createElement("div", {className: "map__legend"}, 
-                    React.createElement(Isvg, {src: "images/legend.svg", uniquifyIDs: false}), 
-                    React.createElement("div", {className: "map__legend-label map__legend-label_num_1"}, this.props.data.max), 
-                    React.createElement("div", {className: "map__legend-label map__legend-label_num_2"}, this.props.data.min)
-                ), 
-                React.createElement("div", {className: "map__svg"}, 
-                    React.createElement(Isvg, {src: "images/map.svg", uniquifyIDs: false, onLoad: this.attachHandlers}, 
-                        React.createElement("img", {src: "images/map.png"})
-                    )
-                ), 
-                React.createElement("div", {className: "map__card map__card_state_hidden"}, 
-                    React.createElement(Isvg, {src: "images/card.svg", uniquifyIDs: false})
-                )
-            )
-        );
+    render: function render() {
+        return React.createElement('div', { className: 'map' }, React.createElement('h4', null, this.props.data.title), React.createElement('div', { className: 'map__legend' }, React.createElement(Isvg, { src: 'images/legend.svg', uniquifyIDs: false }), React.createElement('div', { className: 'map__legend-label map__legend-label_num_1' }, this.props.data.max), React.createElement('div', { className: 'map__legend-label map__legend-label_num_2' }, this.props.data.min)), React.createElement('div', { className: 'map__svg' }, React.createElement(Isvg, { src: 'images/map.svg', uniquifyIDs: false, onLoad: this.attachHandlers }, React.createElement('img', { src: 'images/map.png' }))), React.createElement('div', { className: 'map__card map__card_state_hidden' }, React.createElement(Isvg, { src: 'images/card.svg', uniquifyIDs: false })));
     }
 });
+
+var Card = function (_React$Component2) {
+    _inherits(Card, _React$Component2);
+
+    function Card(props) {
+        _classCallCheck(this, Card);
+
+        var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Card).call(this, props));
+
+        _this2.props = props;
+        _this2.currentData = {};
+        _this2.render();
+        return _this2;
+    }
+
+    _createClass(Card, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(newProps) {
+            if (typeof newProps.currentRegion !== 'undefined') this.currentData = this.props.data.regions[newProps.currentRegion];else this.currentData = {};
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var currentData = this.currentData;
+            var times = function (currentData) {
+                if (typeof currentData.periodEnd === 'undefined') {
+                    return 'Начало руководства главы:<br/>' + currentData.period;
+                }
+                return 'Период руководства главы:<br/>' + currentData.period + ' — ' + currentData.periodEnd;
+            }(currentData);
+
+            if (Object.keys(currentData) == 0) return React.createElement('div', { className: 'card' });else return React.createElement('div', { className: 'card' }, React.createElement('h2', null, this.currentData.title), React.createElement('div', { className: 'card__info' }, React.createElement('div', { className: 'card__photo' }, React.createElement('img', { src: 'images/heads/' + this.props.currentRegion + '.png' })), React.createElement('div', { className: 'card__text' }, React.createElement('h4', null, this.currentData.head), React.createElement('div', { className: 'card__position' }, this.currentData.position), React.createElement('div', { className: 'card__times', dangerouslySetInnerHTML: { __html: times } }))));
+        }
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            ReactDOM.unmountComponentAtNode(this._container);
+        }
+    }]);
+
+    return Card;
+}(React.Component);
 
 module.exports = {
     App: App,
     TableNode: TableNode,
-    Map: Map
+    Map: Map,
+    Card: Card
 };
+
 
 },{"fs":"/Users/uldin/www/stat/node_modules/browserify/lib/_empty.js","jquery-browserify":"/Users/uldin/www/stat/node_modules/jquery-browserify/lib/jquery.js","react":"/Users/uldin/www/stat/node_modules/react/react.js","react-dom":"/Users/uldin/www/stat/node_modules/react-dom/index.js","react-inlinesvg":"/Users/uldin/www/stat/node_modules/react-inlinesvg/lib/index.js"}],"/Users/uldin/www/stat/src/js/index.js":[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var ReactDom = require('react-dom');
-// Here we put our React instance to the global scope. Make sure you do not put it 
-// into production and make sure that you close and open your console if the 
+// Here we put our React instance to the global scope. Make sure you do not put it
+// into production and make sure that you close and open your console if the
 // DEV-TOOLS does not display
-window.React = React; 
+window.React = React;
 
 var data = require('../data/index');
 
 var App = require('./App.jsx').App;
-ReactDom.render(React.createElement(App, {data: data}), document.getElementById('App'));
+// ReactDom.render(<App data={data} />, document.getElementById('App'));
+
+var a = new App(data, document.getElementById('App'));
+
 
 },{"../data/index":"/Users/uldin/www/stat/src/data/index.js","./App.jsx":"/Users/uldin/www/stat/src/js/App.jsx","react":"/Users/uldin/www/stat/node_modules/react/react.js","react-dom":"/Users/uldin/www/stat/node_modules/react-dom/index.js"}]},{},["/Users/uldin/www/stat/src/js/index.js"])
 

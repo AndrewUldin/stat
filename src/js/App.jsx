@@ -4,19 +4,44 @@ var fs = require('fs');
 var $ = require('jquery-browserify');
 var Isvg = require('react-inlinesvg');
 
-var App = React.createClass({
-    displayName: 'App',
-    render: function() {
-        return (
+class App extends React.Component {
+    constructor(props, container) {
+        super(props);
+        this.props = props;
+        this.props.currentRegion = 0;
+        this.container = container;
+        this.render();
+    }
+
+    render() {
+        var self = this;
+        ReactDOM.render(
             <div className="container">
                 <div className="container__page">
-                    <TableBlock data={this.props.data.table} />
-                    <Map data={this.props.data.map} />
+                    <Card
+                        data={this.props.card}
+                        currentRegion={this.props.currentRegion}
+                    />
+                    <TableBlock data={this.props.table} />
+                    <Map 
+                        data={this.props.map}
+                        reloadData={this.cardReloadDataFunc.bind(self)}
+                    />
                 </div>
-            </div>
+            </div>,
+            this.container
         );
     }
-});
+
+    cardReloadDataFunc(newVal) {
+        this.props.currentRegion = newVal;
+        this.render();
+    }
+
+    destroy() {
+        ReactDOM.unmountComponentAtNode(this.container);
+    }
+}
 
 var TableBlock = React.createClass({
     displayName: 'TableBlock',
@@ -149,6 +174,7 @@ var Map = React.createClass({
         $('#pattern'+id).attr('class', 'original-color changed-color');
         $('.map__card_state_hidden').removeClass('map__card_state_hidden');
         this.redrawCard($region);
+        this.props.reloadData($(e.currentTarget).data('region'));
     },
     handlerOut: function(e) {
         var $elem = $(e.currentTarget);
@@ -160,9 +186,10 @@ var Map = React.createClass({
         if ($region.length > 0) $region.attr('class', $region.attr('class').replace(' active-region', ''));
         $('#pattern'+id).attr('class', 'original-color');
         $('.map__card').addClass('map__card_state_hidden');
+        this.props.reloadData(undefined);
     },
     handlerClick: function(e) {
-        console.log('click', $(e.currentTarget).data('region'));
+        this.props.reloadData($(e.currentTarget).data('region'));
     },
     attachHandlers: function() {
         var $this = $(ReactDOM.findDOMNode(this));
@@ -211,8 +238,58 @@ var Map = React.createClass({
     }
 });
 
+class Card extends React.Component {
+    constructor(props) {
+        super(props);
+        this.props = props;
+        this.currentData = {};
+        this.render();
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (typeof newProps.currentRegion !== 'undefined')
+            this.currentData = this.props.data.regions[newProps.currentRegion];
+        else
+            this.currentData = {};
+    }
+
+    render() {
+        var currentData = this.currentData;
+        var times = (function(currentData) {
+            if (typeof currentData.periodEnd === 'undefined') {
+                return 'Начало руководства главы:<br/>'+currentData.period;
+            }
+            return 'Период руководства главы:<br/>'+currentData.period+' — '+currentData.periodEnd;
+        })(currentData);
+
+        if (Object.keys(currentData) == 0) 
+            return (
+                <div className="card"/>
+            );
+        else
+            return (
+                <div className="card">
+                    <h2>{this.currentData.title}</h2>
+                    <div className="card__info">
+                        <div className="card__photo"><img src={'images/heads/' + this.props.currentRegion + '.png'} /></div>
+                        <div className="card__text">
+                            <h4>{this.currentData.head}</h4>
+                            <div className="card__position">{this.currentData.position}</div>
+                            <div className="card__times" dangerouslySetInnerHTML={{__html: times}} />
+                        </div>
+                    </div>
+                </div>
+            );
+    }
+
+    destroy() {
+        ReactDOM.unmountComponentAtNode(this._container);
+    }
+}
+
 module.exports = {
     App: App,
     TableNode: TableNode,
-    Map: Map
+    Map: Map,
+    Card: Card
 };

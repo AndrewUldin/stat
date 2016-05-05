@@ -2,5 +2,6 @@
 
 module.exports = {
     table: require('./table'),
-    map: require('./map')
+    map: require('./map'),
+    card: require('./card')
 };

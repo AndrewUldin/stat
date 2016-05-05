@@ -10,11 +10,12 @@ var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 var sass = require('gulp-sass');
 var reactify = require('reactify');
+var babelify = require('babelify');
 
 // add custom browserify options here
 var customOpts = {
     entries: ['./src/js/index.js'],
-    transform: [reactify], // We want to convert JSX to normal javascript
+    // transform: [], // We want to convert JSX to normal javascript
     debug: true,
     cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
 };
@@ -29,7 +30,10 @@ b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
 
 function bundle() {
-    return b.bundle()
+    return b
+        .transform('babelify', {presets: ['es2015', 'react']})
+        .transform('reactify')
+        .bundle()
         // log errors if they happen
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('index.js'))
