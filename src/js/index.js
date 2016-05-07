@@ -10,6 +10,5 @@ window.React = React;
 var data = require('../data/index');
 
 var App = require('./App.jsx').App;
-// ReactDom.render(<App data={data} />, document.getElementById('App'));
 
 var a = new App(data, document.getElementById('App'));

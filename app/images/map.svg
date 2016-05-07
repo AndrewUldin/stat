@@ -269,6 +269,28 @@
         cursor: pointer;
         transition: stroke .2s ease;
       }
+      .hover-region {
+        cursor: pointer;
+      }
+      .card-1 {
+        fill: #2b2b2b;
+      }
+
+      .card-2 {
+        fill: #dda800;
+      }
+
+      .card-3 {
+        font-size: 13px;
+        fill: #332e28;
+        font-family: 'Roboto Slab', serif;
+        font-weight: 700;
+      }
+
+      .info-card_state_hidden {
+        display: none;
+      }
+
     </style>
   </defs>
   <title>map</title>
@@ -520,7 +542,12 @@
       <text class="cls-23 region-name" transform="translate(199.98 326.45)" data-region="4">Ставропольский<tspan x="30" y="15">край</tspan></text>
     </g>
   </g>
-  <g>
+  <g id="ПОКАЗАТЕЛЬ_ВПР" class="info-card info-card_state_hidden">
+    <polygon class="card-1" points="0 15.56 0 28.3 37.57 28.3 44.1 31.68 50.64 28.3 88 28.3 88 15.56 0 15.56"/>
+    <polygon class="card-2" points="0 0 0 24.58 37.57 24.58 44.1 31.12 50.64 24.58 88.21 24.58 88.21 0 0 0"/>
+    <text class="card-3 card-text-placer" transform="translate(0 16.72)">1 792 048 185</text>
+  </g>
+  <g class="lines">
     <path class="cls-25" d="M590.74,256a3.35,3.35,0,1,0-3.16-2.41L560.24,266l0.41,0.91L588,254.52A3.29,3.29,0,0,0,590.74,256Z" transform="translate(-495.73 -1.54)"/>
     <path class="cls-25" d="M605.89,320a3.25,3.25,0,0,0-3.16,4.17l-27.34,12.36,0.41,0.91L603.13,325A3.29,3.29,0,1,0,605.89,320Z" transform="translate(-495.73 -1.54)"/>
     <path class="cls-25" d="M643.66,389.6a3.35,3.35,0,1,0-3.16-2.41l-27.34,12.36,0.41,0.91,27.33-12.35A3.29,3.29,0,0,0,643.66,389.6Z" transform="translate(-495.73 -1.54)"/>
@@ -528,4 +555,5 @@
     <path class="cls-25" d="M693,480.19a3.35,3.35,0,1,0-3.16-2.41l-27.34,12.36,0.41,0.91,27.33-12.35A3.29,3.29,0,0,0,693,480.19Z" transform="translate(-495.73 -1.54)"/>
     <path class="cls-25" d="M697.59,501.51a3.25,3.25,0,0,0-3.16,4.17L667.09,518,667.5,519l27.33-12.35A3.29,3.29,0,1,0,697.59,501.51Z" transform="translate(-495.73 -1.54)"/>
   </g>
+
 </svg>

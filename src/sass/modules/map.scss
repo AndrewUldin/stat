@@ -14,22 +14,8 @@
         width: 100%;
         max-width: 628px;
         height: 681px;
-        transform: translate3d( 0, 0, 0) perspective(1px) scale(1);
-    }
-
-    &__card {
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 1;
-        transition: opacity .5s ease;
-
-        &_state_hidden {
-            opacity: 0;
-        }
-        svg {
-            width: 88px;
-        }
+        transform: translate3d(0, 0, 0) perspective(1px) scale(1);
+        position: relative;
     }
 
     &__legend {

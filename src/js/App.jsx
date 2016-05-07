@@ -3,12 +3,14 @@ var ReactDOM = require('react-dom');
 var fs = require('fs');
 var $ = require('jquery-browserify');
 var Isvg = require('react-inlinesvg');
+var ReactCSSTransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 
 class App extends React.Component {
     constructor(props, container) {
         super(props);
         this.props = props;
-        this.props.currentRegion = 0;
+        this.props.currentRegion = false;
+        this.props.toggled = false;
         this.container = container;
         this.render();
     }
@@ -20,6 +22,7 @@ class App extends React.Component {
                 <div className="container__page">
                     <Card
                         data={this.props.card}
+                        toggled={this.props.toggled}
                         currentRegion={this.props.currentRegion}
                     />
                     <TableBlock data={this.props.table} />
@@ -33,8 +36,23 @@ class App extends React.Component {
         );
     }
 
-    cardReloadDataFunc(newVal) {
-        this.props.currentRegion = newVal;
+    cardReloadDataFunc(eventType, toggleStatus, selectedRegion, regionAfterMouseOut) {
+        this.props.toggled = toggleStatus;
+        switch (eventType) {
+            case "click":
+                if (toggleStatus == true) {
+                    this.props.currentRegion = selectedRegion;
+                } else {
+                    this.props.currentRegion = regionAfterMouseOut;
+                }
+                break;
+            case "mouseover":
+                this.props.currentRegion = selectedRegion;
+                break;
+            case "mouseout":
+                this.props.currentRegion = regionAfterMouseOut;
+                break;
+        }
         this.render();
     }
 
@@ -150,58 +168,84 @@ var TableNode = React.createClass({
 
 var Map = React.createClass({
     displayName: 'Map',
+    toggled: false,
+    prevClientY: 0,
     componentDidMount: function() {
     },
     componentWillUnmount: function() {
         var $this = $(ReactDOM.findDOMNode(this));
         var $svg = $this.find('svg');
-        $svg.off('mouseover', '.selectable-region');
-        $svg.off('mouseout', '.selectable-region');
-        $svg.off('click', '.selectable-region');
-        $svg.off('mouseover', '.region-name');
-        $svg.off('mouseout', '.region-name');
-        $svg.off('click', '.region-name');
-        $svg.off('mousemove');
+        $svg.off('mouseover', '.hover-region');
+        $svg.off('mouseout', '.hover-region');
+        $svg.off('click', '.hover-region');
     },
-    handlerOver: function(e) {
-        var $elem = $(e.currentTarget);
+    setRegionActive: function(e) {
+        var id = $(e.currentTarget).data('region');
         var $svg = $(e.delegateTarget);
-        var id = $elem.data('region');
         var $name = $svg.find('.region-name[data-region='+id+']');
         var $region = $svg.find('.selectable-region[data-region='+id+']');
         if ($name.length > 0) $name.attr('class', $name.attr('class').replace(' active-text', '') + ' active-text');
         if ($region.length > 0) $region.attr('class', $region.attr('class').replace(' active-region', '') + ' active-region');
         $('#pattern'+id).attr('class', 'original-color changed-color');
-        $('.map__card_state_hidden').removeClass('map__card_state_hidden');
-        this.redrawCard($region);
-        this.props.reloadData($(e.currentTarget).data('region'));
+        return $region;
     },
-    handlerOut: function(e) {
-        var $elem = $(e.currentTarget);
+    setRegionNotActive: function(e, region) {
+        var id = region || $(e.currentTarget).data('region');
         var $svg = $(e.delegateTarget);
-        var id = $elem.data('region');
         var $name = $svg.find('.region-name[data-region='+id+']');
         var $region = $svg.find('.selectable-region[data-region='+id+']');
         if ($name.length > 0) $name.attr('class', $name.attr('class').replace(' active-text', ''));
         if ($region.length > 0) $region.attr('class', $region.attr('class').replace(' active-region', ''));
         $('#pattern'+id).attr('class', 'original-color');
-        $('.map__card').addClass('map__card_state_hidden');
-        this.props.reloadData(undefined);
+    },
+    handlerOver: function(e) {
+        var currentRegion = $(e.currentTarget).data('region');
+        var $region = this.setRegionActive(e);
+        $('.info-card').attr('class', 'info-card');
+        this.redrawCard($region);
+        this.repositionCard(e, currentRegion);
+        this.props.reloadData('mouseover', !!this.toggled, currentRegion, this.toggled);
+    },
+    handlerOut: function(e) {
+        var currentRegion = $(e.currentTarget).data('region');
+        if (this.toggled != currentRegion) {
+            this.setRegionNotActive(e);
+        }
+        $('.info-card').attr('class', 'info-card info-card_state_hidden');
+        this.props.reloadData('mouseout', !!this.toggled, currentRegion, this.toggled);
     },
     handlerClick: function(e) {
-        this.props.reloadData($(e.currentTarget).data('region'));
+        var currentRegion = $(e.currentTarget).data('region');
+        this.setRegionActive(e);
+        if (this.toggled != false) {
+            if (this.toggled == currentRegion) {
+                this.toggled = false;
+            } else {
+                this.setRegionNotActive(e, this.toggled);
+                this.toggled = currentRegion;
+            }
+        } else {
+            this.toggled = currentRegion;
+        }
+        this.repositionCard(e, currentRegion);
+        this.props.reloadData('click', !!this.toggled, currentRegion, this.toggled);
     },
     attachHandlers: function() {
         var $this = $(ReactDOM.findDOMNode(this));
         var $svg = $this.find('svg');
-        $svg.on('mouseover', '.selectable-region', this.handlerOver);
-        $svg.on('mouseout', '.selectable-region', this.handlerOut);
-        $svg.on('click', '.selectable-region', this.handlerClick);
-        $svg.on('mouseover', '.region-name', this.handlerOver);
-        $svg.on('mouseout', '.region-name', this.handlerOut);
-        $svg.on('click', '.region-name', this.handlerClick);
-        $svg.on('mousemove', this.repositionCard);
-        $('.map__card').on('mouseover', this.repositionCard);
+        $svg.on('mouseover', '.hover-region', this.handlerOver);
+        $svg.on('mouseout', '.hover-region', this.handlerOut);
+        $svg.on('click', '.hover-region', this.handlerClick);
+
+          $svg.find('.selectable-region').each(function(i, d) {
+              var path = $(d).clone()
+              .attr('class', 'hover-region')
+              .attr("stroke", "white")
+              .attr("stroke-width", 5)
+              .attr("style", "opacity: 0; z-index: 1000; position: relative;");
+              path.insertAfter($svg.find('.lines'));
+          });
+        // $('.hover-region').eq(0).trigger('click');
     },
     redrawCard: function(elem) {
         var value = elem.data('value');
@@ -210,11 +254,29 @@ var Map = React.createClass({
         var newLeft = (88 - textPlacer[0].getComputedTextLength()) / 2; // magic number!! width of card
             textPlacer.attr('transform', 'translate('+newLeft+' 16.72)');
     },
-    repositionCard: function(e) {
-        var map = $('.map').offset();
-        var newX = e.clientX - map.left - 44; // magic numbers!! width of card / 2
-        var newY = e.clientY - map.top + $(window).scrollTop() - 50; // magic numbers!! height of card
-        $('.map__card').css('transform', 'translate3d('+newX+'px, '+newY+'px, 0)');
+    repositionCard: function(e, region) {
+        var bbox = e.currentTarget.getBBox();
+        var c = .5;
+        switch (region) {
+            case 1:
+                c = .33;
+                break;
+            case 2:
+                c = .45;
+                break;
+            case 8:
+                c = .65;
+                break;
+            case 11:
+                c = .55;
+                break;
+            case 13:
+                c = .45;
+                break;
+        }
+        var newX = bbox.x + (bbox.width * .5) - 44 - 495.73; // magic numbers!! width of card / 2
+        var newY = bbox.y + (bbox.height * c) - 50; // magic numbers!! height of card
+        $('.info-card').attr('transform', 'translate('+newX+', '+newY+')');
     },
     render: function() {
         return (
@@ -230,9 +292,6 @@ var Map = React.createClass({
                         <img src="images/map.png" />
                     </Isvg>
                 </div>
-                <div className="map__card map__card_state_hidden">
-                    <Isvg src="images/card.svg" uniquifyIDs={false}></Isvg>
-                </div>
             </div>
         );
     }
@@ -243,41 +302,138 @@ class Card extends React.Component {
         super(props);
         this.props = props;
         this.currentData = {};
-        this.render();
+        this.lastData = {};
     }
 
     componentWillReceiveProps(newProps) {
-        if (typeof newProps.currentRegion !== 'undefined')
+        if (newProps.currentRegion != false) {
             this.currentData = this.props.data.regions[newProps.currentRegion];
-        else
-            this.currentData = {};
-    }
-
-    render() {
-        var currentData = this.currentData;
-        var times = (function(currentData) {
-            if (typeof currentData.periodEnd === 'undefined') {
-                return 'Начало руководства главы:<br/>'+currentData.period;
+            this.lastRegion = newProps.currentRegion;
+            this.lastData = this.currentData;
+            $('.table').addClass('table_invisible_yes');
+            $('.card').addClass('card_filled_yes');
+        } else {
+            if (newProps.toggled == false) {
+                this.currentData = {};
+                $('.table').removeClass('table_invisible_yes');
+                $('.card').removeClass('card_filled_yes');
             }
-            return 'Период руководства главы:<br/>'+currentData.period+' — '+currentData.periodEnd;
-        })(currentData);
-
-        if (Object.keys(currentData) == 0) 
-            return (
-                <div className="card"/>
-            );
-        else
+        }
+    }
+    render() {
+        var wrapper = (function(currentData, lastData, displayRegion, toggled) {
+            if (Object.keys(currentData) == 0) {
+                var displayData = lastData;
+            } else {
+                var displayData = currentData
+            }
+            var times = (function(displayData) {
+                if (typeof displayData.periodEnd === 'undefined') {
+                    return 'Начало руководства главы:<br/>'+displayData.period;
+                }
+                return 'Период руководства главы:<br/>'+displayData.period+' — '+displayData.periodEnd;
+            })(displayData);
+            if (!displayRegion) displayRegion = 1;
+            return  <div className="card__wrap">
+                        <h1>{displayData.title}</h1>
+                        <div className="card__info">
+                            <div className="card__photo"><img src={'images/heads/' + displayRegion + '.png'} /></div>
+                            <div className="card__text">
+                                <div className="card__text-wrap">
+                                    <h2>{displayData.head}</h2>
+                                    <div className="card__position">{displayData.position}</div>
+                                    <div className="card__times" dangerouslySetInnerHTML={{__html: times}} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="statistic">
+                            <table className="statistic__table" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td rowSpan="2" className="td__svg statistic__svg_num_1">
+                                            <Isvg src="images/statistic__icon_num_1.svg" />
+                                        </td>
+                                        <td className="td__title">
+                                            <div className="statistic__title">ВРП на душу населения</div>
+                                        </td>
+                                        <td className="td__value">
+                                            <div className="statistic__value">{displayData.vrp}</div>
+                                            <div className="statistic__rub"><Isvg src="images/statistic__rub.svg" /></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan="2" className="td__line">
+                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
+                                                <div className="statistic__bar"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr className='tr__space'><td colSpan="3"/></tr>
+                                    <tr>
+                                        <td rowSpan="2" className="td__svg statistic__svg_num_1">
+                                            <Isvg src="images/statistic__icon_num_2.svg" />
+                                        </td>
+                                        <td className="td__title">
+                                            <div className="statistic__title">ВРП на душу населения</div>
+                                        </td>
+                                        <td className="td__value">
+                                            <div className="statistic__value">{displayData.vrp}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan="2" className="td__line">
+                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
+                                                <div className="statistic__bar"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr className='tr__space'><td colSpan="3"/></tr>
+                                    <tr>
+                                        <td rowSpan="2" className="td__svg statistic__svg_num_1">
+                                            <Isvg src="images/statistic__icon_num_3.svg" />
+                                        </td>
+                                        <td className="td__title">
+                                            <div className="statistic__title">ВРП на душу населения</div>
+                                        </td>
+                                        <td className="td__value">
+                                            <div className="statistic__value">{displayData.vrp}</div>
+                                            <div className="statistic__rub"><Isvg src="images/statistic__rub.svg" /></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan="2" className="td__line">
+                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
+                                                <div className="statistic__bar"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr className='tr__space'><td colSpan="3"/></tr>
+                                    <tr>
+                                        <td rowSpan="2" className="td__svg statistic__svg_num_1">
+                                            <Isvg src="images/statistic__icon_num_4.svg" />
+                                        </td>
+                                        <td className="td__title">
+                                            <div className="statistic__title">ВРП на душу населения</div>
+                                        </td>
+                                        <td className="td__value">
+                                            <div className="statistic__value">{displayData.vrp}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan="2" className="td__line">
+                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
+                                                <div className="statistic__bar"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>;
+        })(this.currentData, this.lastData, this.lastRegion, this.props.toggled);
             return (
                 <div className="card">
-                    <h2>{this.currentData.title}</h2>
-                    <div className="card__info">
-                        <div className="card__photo"><img src={'images/heads/' + this.props.currentRegion + '.png'} /></div>
-                        <div className="card__text">
-                            <h4>{this.currentData.head}</h4>
-                            <div className="card__position">{this.currentData.position}</div>
-                            <div className="card__times" dangerouslySetInnerHTML={{__html: times}} />
-                        </div>
-                    </div>
+                    {wrapper}
                 </div>
             );
     }

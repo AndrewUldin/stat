@@ -20,7 +20,8 @@ var customOpts = {
     cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
 };
 var opts = assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts));
+// var b = watchify(browserify(opts));
+var b = browserify(opts);
 
 // add transformations here
 // i.e. b.transform(coffeeify);
