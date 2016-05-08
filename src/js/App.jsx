@@ -4,7 +4,7 @@ var fs = require('fs');
 var $ = require('jquery-browserify');
 var Isvg = require('react-inlinesvg');
 var ReactCSSTransitionGroup = require('react/lib/ReactCSSTransitionGroup');
-
+31
 class App extends React.Component {
     constructor(props, container) {
         super(props);
@@ -303,6 +303,18 @@ class Card extends React.Component {
         this.props = props;
         this.currentData = {};
         this.lastData = {};
+        var regions = this.props.data.regions;
+        var max = {};
+        Object.keys(regions).forEach(function(regionKey) {
+            var region = regions[regionKey];
+            Object.keys(region).forEach(function(key) {
+                var value = region[key];
+                if (typeof value == 'number') {
+                    if (!max[key] || value > max[key]) max[key] = value;
+                }
+            });
+        });
+        this.max = max;
     }
 
     componentWillReceiveProps(newProps) {
@@ -321,7 +333,7 @@ class Card extends React.Component {
         }
     }
     render() {
-        var wrapper = (function(currentData, lastData, displayRegion, toggled) {
+        var wrapper = (function(currentData, lastData, displayRegion, toggled, max) {
             if (Object.keys(currentData) == 0) {
                 var displayData = lastData;
             } else {
@@ -334,6 +346,15 @@ class Card extends React.Component {
                 return 'Период руководства главы:<br/>'+displayData.period+' — '+displayData.periodEnd;
             })(displayData);
             if (!displayRegion) displayRegion = 1;
+
+            if(displayData) {
+                displayData.max_population = (displayData.population / (max.population / 100)).toFixed(2);
+                displayData.max_vrp = (displayData.vrp / (max.vrp / 100)).toFixed(2);
+                displayData.max_index = (displayData.index / (max.index / 100)).toFixed(2);
+                displayData.max_flats = (displayData.flats / (max.flats / 100)).toFixed(2);
+                displayData.max_auto = (displayData.auto / (max.auto / 100)).toFixed(2);
+            }
+
             return  <div className="card__wrap">
                         <h1>{displayData.title}</h1>
                         <div className="card__info">
@@ -363,8 +384,8 @@ class Card extends React.Component {
                                     </tr>
                                     <tr>
                                         <td colSpan="2" className="td__line">
-                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
-                                                <div className="statistic__bar"/>
+                                            <div className="statistic__line">
+                                                <div className="statistic__bar" style={{width: displayData.max_vrp + '%'}} />
                                             </div>
                                         </td>
                                     </tr>
@@ -374,16 +395,16 @@ class Card extends React.Component {
                                             <Isvg src="images/statistic__icon_num_2.svg" />
                                         </td>
                                         <td className="td__title">
-                                            <div className="statistic__title">ВРП на душу населения</div>
+                                            <div className="statistic__title">индекс качества жизни</div>
                                         </td>
                                         <td className="td__value">
-                                            <div className="statistic__value">{displayData.vrp}</div>
+                                            <div className="statistic__value">{displayData.index}</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colSpan="2" className="td__line">
-                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
-                                                <div className="statistic__bar"/>
+                                            <div className="statistic__line">
+                                                <div className="statistic__bar" style={{width: displayData.max_index + '%'}} />
                                             </div>
                                         </td>
                                     </tr>
@@ -393,17 +414,17 @@ class Card extends React.Component {
                                             <Isvg src="images/statistic__icon_num_3.svg" />
                                         </td>
                                         <td className="td__title">
-                                            <div className="statistic__title">ВРП на душу населения</div>
+                                            <div className="statistic__title">Средняя стоимость 1 кв.м. жилья</div>
                                         </td>
                                         <td className="td__value">
-                                            <div className="statistic__value">{displayData.vrp}</div>
+                                            <div className="statistic__value">{displayData.flats}</div>
                                             <div className="statistic__rub"><Isvg src="images/statistic__rub.svg" /></div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colSpan="2" className="td__line">
-                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
-                                                <div className="statistic__bar"/>
+                                            <div className="statistic__line">
+                                                <div className="statistic__bar" style={{width: displayData.max_flats + '%'}} />
                                             </div>
                                         </td>
                                     </tr>
@@ -413,16 +434,16 @@ class Card extends React.Component {
                                             <Isvg src="images/statistic__icon_num_4.svg" />
                                         </td>
                                         <td className="td__title">
-                                            <div className="statistic__title">ВРП на душу населения</div>
+                                            <div className="statistic__title">Число автомобилей на 1000 человек</div>
                                         </td>
                                         <td className="td__value">
-                                            <div className="statistic__value">{displayData.vrp}</div>
+                                            <div className="statistic__value">{displayData.auto}</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colSpan="2" className="td__line">
-                                            <div className="statistic__line" data-value={displayData.vrp_proc}>
-                                                <div className="statistic__bar"/>
+                                            <div className="statistic__line">
+                                                <div className="statistic__bar" style={{width: displayData.max_auto + '%'}} />
                                             </div>
                                         </td>
                                     </tr>
@@ -430,7 +451,7 @@ class Card extends React.Component {
                             </table>
                         </div>
                     </div>;
-        })(this.currentData, this.lastData, this.lastRegion, this.props.toggled);
+        })(this.currentData, this.lastData, this.lastRegion, this.props.toggled, this.max);
             return (
                 <div className="card">
                     {wrapper}

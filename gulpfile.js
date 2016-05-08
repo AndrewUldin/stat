@@ -15,27 +15,22 @@ var babelify = require('babelify');
 // add custom browserify options here
 var customOpts = {
     entries: ['./src/js/index.js'],
-    // transform: [], // We want to convert JSX to normal javascript
     debug: true,
     cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
 };
 var opts = assign({}, watchify.args, customOpts);
-// var b = watchify(browserify(opts));
-var b = browserify(opts);
-
-// add transformations here
-// i.e. b.transform(coffeeify);
+var b = watchify(browserify(opts))
+.transform('babelify', {presets: ['es2015', 'react']})
+.transform('reactify');
 
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
+// b.on('error', gutil.log.bind(gutil, 'Browserify Error'));
 
 function bundle() {
     return b
-        .transform('babelify', {presets: ['es2015', 'react']})
-        .transform('reactify')
         .bundle()
-        // log errors if they happen
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('index.js'))
         // optional, remove if you don't need to buffer file contents

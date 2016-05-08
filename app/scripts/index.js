@@ -30527,147 +30527,147 @@ module.exports = {
         1: {
             title: 'Краснодарский край',
             position: 'Глава области',
-            population: '5454',
-            vrp: '301436',
-            index: '58,79',
+            population: 5454,
+            vrp: 301436,
+            index: 58.79,
             head: 'Александр Николаевич Ткачёв',
             period: '01.2001',
             periodEnd: '04.2015',
-            flats: '42060',
-            auto: '298'
+            flats: 42060,
+            auto: 298
         },
         2: {
             title: 'Ростовская область',
             position: 'Глава области',
-            population: '4242',
-            vrp: '217298',
-            index: '49,74',
+            population: 4242,
+            vrp: 217298,
+            index: 49.74,
             head: 'Василий Юрьевич Голубев',
             period: '06.2010',
-            flats: '49229',
-            auto: '297'
+            flats: 49229,
+            auto: 297
         },
         3: {
             title: 'Волгоградская область',
             position: 'Глава области',
-            population: '2557',
-            vrp: '235290',
-            index: '43,15',
+            population: 2557,
+            vrp: 235290,
+            index: 43.15,
             head: 'Андрей Иванович Бочаров',
             period: '09.2014',
-            flats: '40142',
-            auto: '265'
+            flats: 40142,
+            auto: 265
         },
         4: {
             title: 'Ставропольский край',
             position: 'Глава области',
-            population: '2799',
-            vrp: '171296',
-            index: '44,51',
+            population: 2799,
+            vrp: 171296,
+            index: 44.51,
             head: 'Владимир Владимирович Владимиров',
             period: '09.2014',
-            flats: '32909',
-            auto: '269'
+            flats: 32909,
+            auto: 269
         },
         5: {
             title: 'Республика Дагестан',
             position: 'Глава области',
-            population: '2990',
-            vrp: '145352',
-            index: '33,75',
+            population: 2990,
+            vrp: 145352,
+            index: 33.75,
             head: 'Рамазан Гаджимурадович Абдулатипов',
             period: '09.2013',
-            flats: '22785',
-            auto: '165'
+            flats: 22785,
+            auto: 165
         },
         6: {
             title: 'Астраханская область',
             position: 'Глава области',
-            population: '1021',
-            vrp: '263512',
-            index: '42,11',
+            population: 1021,
+            vrp: 263512,
+            index: 42.11,
             head: 'Александр Александрович Жилкин',
             period: '12.2004',
-            flats: '38891',
-            auto: '247'
+            flats: 38891,
+            auto: 247
         },
         7: {
             title: 'Чеченская Республика',
             position: 'Глава области',
-            population: '1370',
-            vrp: '88462',
-            index: '31,42',
+            population: 1370,
+            vrp: 88462,
+            index: 31.42,
             head: 'Рамзан Ахматович Кадыров',
             period: '04.2007',
-            flats: '42185',
-            auto: '144'
+            flats: 42185,
+            auto: 144
         },
         8: {
             title: 'Республика Северная Осетия',
             position: 'Глава области',
-            population: '706',
-            vrp: '159051',
-            index: '37,98',
+            population: 706,
+            vrp: 159051,
+            index: 37.98,
             head: 'Таймураз Дзамбекович Мамсуров',
             period: '06.2005',
             periodEnd: '06.2015',
-            flats: '36088',
-            auto: '259'
+            flats: 36088,
+            auto: 259
         },
         9: {
             title: 'Кабардино-Балкарская Республика',
             position: 'Глава области',
-            population: '861',
-            vrp: '131866',
-            index: '33,2',
+            population: 861,
+            vrp: 131866,
+            index: 33.2,
             head: 'Юрий Александрович Коков',
             period: '10.2014',
-            flats: '37530',
-            auto: '218'
+            flats: 37530,
+            auto: 218
         },
         10: {
             title: 'Республика Адыгея',
             position: 'Глава области',
-            population: '449',
-            vrp: '161677',
-            index: '41,92',
+            population: 449,
+            vrp: 161677,
+            index: 41.92,
             head: 'Аслан Китович Тхакушинов',
             period: '12.2006',
-            flats: '32267',
-            auto: '276'
+            flats: 32267,
+            auto: 276
         },
         11: {
             title: 'Карачаево-Черкесская Республика',
             position: 'Глава области',
-            population: '469',
-            vrp: '133175',
-            index: '31,13',
+            population: 469,
+            vrp: 133175,
+            index: 31.13,
             head: 'Рашид Бориспиевич Темрезов',
             period: '04.2011',
-            flats: '40157',
-            auto: '215'
+            flats: 40157,
+            auto: 215
         },
         12: {
             title: 'Республика Ингушетия',
             position: 'Глава области',
-            population: '464',
-            vrp: '100911',
-            index: '30,16',
+            population: 464,
+            vrp: 100911,
+            index: 30.16,
             head: 'Юнус-бек Баматгиреевич Евкуров',
             period: '10.2008',
-            flats: '50627',
-            auto: '160'
+            flats: 50627,
+            auto: 160
         },
         13: {
             title: 'Республика Калмыкия',
             position: 'Глава области',
-            population: '281',
-            vrp: '145318',
-            index: '25,41',
+            population: 281,
+            vrp: 145318,
+            index: 25.41,
             head: 'Алексей Маратович Орлов',
             period: '10.2010',
-            flats: '29311',
-            auto: '284'
+            flats: 29311,
+            auto: 284
         }
     }
 };
@@ -30788,6 +30788,7 @@ var fs = require('fs');
 var $ = require('jquery-browserify');
 var Isvg = require('react-inlinesvg');
 var ReactCSSTransitionGroup = require('react/lib/ReactCSSTransitionGroup');
+31;
 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
@@ -31222,6 +31223,18 @@ var Card = function (_React$Component2) {
         _this2.props = props;
         _this2.currentData = {};
         _this2.lastData = {};
+        var regions = _this2.props.data.regions;
+        var max = {};
+        Object.keys(regions).forEach(function (regionKey) {
+            var region = regions[regionKey];
+            Object.keys(region).forEach(function (key) {
+                var value = region[key];
+                if (typeof value == 'number') {
+                    if (!max[key] || value > max[key]) max[key] = value;
+                }
+            });
+        });
+        _this2.max = max;
         return _this2;
     }
 
@@ -31245,7 +31258,7 @@ var Card = function (_React$Component2) {
     }, {
         key: 'render',
         value: function render() {
-            var wrapper = function (currentData, lastData, displayRegion, toggled) {
+            var wrapper = function (currentData, lastData, displayRegion, toggled, max) {
                 if (Object.keys(currentData) == 0) {
                     var displayData = lastData;
                 } else {
@@ -31258,6 +31271,15 @@ var Card = function (_React$Component2) {
                     return 'Период руководства главы:<br/>' + displayData.period + ' — ' + displayData.periodEnd;
                 }(displayData);
                 if (!displayRegion) displayRegion = 1;
+
+                if (displayData) {
+                    displayData.max_population = (displayData.population / (max.population / 100)).toFixed(2);
+                    displayData.max_vrp = (displayData.vrp / (max.vrp / 100)).toFixed(2);
+                    displayData.max_index = (displayData.index / (max.index / 100)).toFixed(2);
+                    displayData.max_flats = (displayData.flats / (max.flats / 100)).toFixed(2);
+                    displayData.max_auto = (displayData.auto / (max.auto / 100)).toFixed(2);
+                }
+
                 return React.createElement(
                     'div',
                     { className: 'card__wrap' },
@@ -31343,8 +31365,8 @@ var Card = function (_React$Component2) {
                                         { colSpan: '2', className: 'td__line' },
                                         React.createElement(
                                             'div',
-                                            { className: 'statistic__line', 'data-value': displayData.vrp_proc },
-                                            React.createElement('div', { className: 'statistic__bar' })
+                                            { className: 'statistic__line' },
+                                            React.createElement('div', { className: 'statistic__bar', style: { width: displayData.max_vrp + '%' } })
                                         )
                                     )
                                 ),
@@ -31367,7 +31389,7 @@ var Card = function (_React$Component2) {
                                         React.createElement(
                                             'div',
                                             { className: 'statistic__title' },
-                                            'ВРП на душу населения'
+                                            'индекс качества жизни'
                                         )
                                     ),
                                     React.createElement(
@@ -31376,7 +31398,7 @@ var Card = function (_React$Component2) {
                                         React.createElement(
                                             'div',
                                             { className: 'statistic__value' },
-                                            displayData.vrp
+                                            displayData.index
                                         )
                                     )
                                 ),
@@ -31388,8 +31410,8 @@ var Card = function (_React$Component2) {
                                         { colSpan: '2', className: 'td__line' },
                                         React.createElement(
                                             'div',
-                                            { className: 'statistic__line', 'data-value': displayData.vrp_proc },
-                                            React.createElement('div', { className: 'statistic__bar' })
+                                            { className: 'statistic__line' },
+                                            React.createElement('div', { className: 'statistic__bar', style: { width: displayData.max_index + '%' } })
                                         )
                                     )
                                 ),
@@ -31412,7 +31434,7 @@ var Card = function (_React$Component2) {
                                         React.createElement(
                                             'div',
                                             { className: 'statistic__title' },
-                                            'ВРП на душу населения'
+                                            'Средняя стоимость 1 кв.м. жилья'
                                         )
                                     ),
                                     React.createElement(
@@ -31421,7 +31443,7 @@ var Card = function (_React$Component2) {
                                         React.createElement(
                                             'div',
                                             { className: 'statistic__value' },
-                                            displayData.vrp
+                                            displayData.flats
                                         ),
                                         React.createElement(
                                             'div',
@@ -31438,8 +31460,8 @@ var Card = function (_React$Component2) {
                                         { colSpan: '2', className: 'td__line' },
                                         React.createElement(
                                             'div',
-                                            { className: 'statistic__line', 'data-value': displayData.vrp_proc },
-                                            React.createElement('div', { className: 'statistic__bar' })
+                                            { className: 'statistic__line' },
+                                            React.createElement('div', { className: 'statistic__bar', style: { width: displayData.max_flats + '%' } })
                                         )
                                     )
                                 ),
@@ -31462,7 +31484,7 @@ var Card = function (_React$Component2) {
                                         React.createElement(
                                             'div',
                                             { className: 'statistic__title' },
-                                            'ВРП на душу населения'
+                                            'Число автомобилей на 1000 человек'
                                         )
                                     ),
                                     React.createElement(
@@ -31471,7 +31493,7 @@ var Card = function (_React$Component2) {
                                         React.createElement(
                                             'div',
                                             { className: 'statistic__value' },
-                                            displayData.vrp
+                                            displayData.auto
                                         )
                                     )
                                 ),
@@ -31483,8 +31505,8 @@ var Card = function (_React$Component2) {
                                         { colSpan: '2', className: 'td__line' },
                                         React.createElement(
                                             'div',
-                                            { className: 'statistic__line', 'data-value': displayData.vrp_proc },
-                                            React.createElement('div', { className: 'statistic__bar' })
+                                            { className: 'statistic__line' },
+                                            React.createElement('div', { className: 'statistic__bar', style: { width: displayData.max_auto + '%' } })
                                         )
                                     )
                                 )
@@ -31492,7 +31514,7 @@ var Card = function (_React$Component2) {
                         )
                     )
                 );
-            }(this.currentData, this.lastData, this.lastRegion, this.props.toggled);
+            }(this.currentData, this.lastData, this.lastRegion, this.props.toggled, this.max);
             return React.createElement(
                 'div',
                 { className: 'card' },

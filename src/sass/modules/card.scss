@@ -90,6 +90,13 @@
         border: 1px solid #37393a;
     }
 
+    &__bar {
+        height: 10px;
+        background: $green;
+        transition: width .5s ease;
+        width: 0%;
+    }
+
     &__svg_num_1 {
         svg {
             width: 48px;
