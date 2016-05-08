@@ -16,6 +16,16 @@
         height: 681px;
         transform: translate3d(0, 0, 0) perspective(1px) scale(1);
         position: relative;
+        outline: rgb(0, 0, 0) none 3px;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        svg {
+            outline: rgb(0, 0, 0) none 3px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        svg * {
+            outline: rgb(0, 0, 0) none 3px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
     }
 
     &__legend {

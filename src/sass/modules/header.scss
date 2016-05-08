@@ -1,0 +1,25 @@
+#header {
+    width: 100%;
+    background-color: #efefef;
+    min-height: 61px;
+    // box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+    padding: 14px 15px 15px;
+    box-sizing: border-box;
+
+    a.logo:link,
+    a.logo:visited {
+        text-decoration: none;
+        color: $brown;
+        font-size: #555;
+        font: 32px/1 Georgia, Times, 'Times New Roman', serif;
+    }
+
+    a.logo:hover {
+        opacity: .9;
+    }
+
+}
+.header__share {
+    float: right;
+    margin: 4px 10px 0 0;
+}

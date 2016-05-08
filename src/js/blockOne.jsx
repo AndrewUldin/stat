@@ -1,19 +1,17 @@
 'use strict';
 
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var $ = require('jquery-browserify');
-var json2html = require('json2html');
 
-console.log(json2html);
+var bh = new (require('bh').BH);
 
 /* modules */
 var Table = require('./modules/table.jsx');
 var Map = require('./modules/map.jsx');
 var Card = require('./modules/card.jsx');
 
-module.exports = class App extends React.Component {
+module.exports = class blockOne extends React.Component {
     constructor(props, container) {
         super(props);
         this.props = props;
@@ -27,11 +25,7 @@ module.exports = class App extends React.Component {
         var self = this;
         ReactDOM.render(
             <div className="container">
-                <div className="container__page container__page_mode_text">
-                    <div className="container__wrap">
-                        <div className="container__body" dangerouslySetInnerHTML={{__html: json2html.render(this.props.text[0])}} />
-                    </div>
-                </div>
+                <div className="container__header">{this.props.header}</div>
                 <div className="container__page container__page_mode_graphics">
                     <div className="container__wrap">
                         <div className="container__body">
@@ -46,6 +40,11 @@ module.exports = class App extends React.Component {
                                 reloadData={this.cardReloadDataFunc.bind(self)}
                             />
                         </div>
+                    </div>
+                </div>
+                <div className="container__page container__page_mode_text">
+                    <div className="container__wrap">
+                        <div className="container__body" dangerouslySetInnerHTML={{__html: bh.toHtml(this.props.text)}} />
                     </div>
                 </div>
             </div>,

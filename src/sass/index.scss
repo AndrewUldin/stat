@@ -2,6 +2,7 @@
 @import 'modules/vars';
 @import 'modules/mixins';
 @import 'modules/common';
+@import 'modules/header';
 @import 'modules/table';
 @import 'modules/map';
 @import 'modules/card';
@@ -15,31 +16,56 @@ body {
 
     &__page {
         position: relative;
-        @include cf();
     }
 
     &__wrap {
         max-width: 1240px;
         margin: 0 auto;
+        padding: 60px 30px;
     }
 
     &__body {
-        padding: 30px;
+        position: relative;
+        @include cf();
     }
 
     &__page_mode_graphics {
-        background-color: #ffffff;
+        background-color: #eaeff2;
         background-image: url('../images/background.png');
         background-position: left top;
     }
-    &__page_mode_text {
-        border: 1px solid red;
-    }
-}
 
-@include respond-to(desktop) {
-    .container {
-        width: 95%;
-        height: 95%;
+    &__page_mode_graphics:after {
+        content: "";
+        display: block;
+        height: 5px;
+        background: $brown;
+        width: 100%;
     }
+
+    &__page_mode_text {
+        .container__wrap {
+            max-width: 800px;
+
+            h1, h2, h3, h4, h5 {
+                font-family: Georgia, Times, 'Times New Roman', serif;
+                text-transform: none;
+            }
+
+            p {
+                font-family: Arial;
+            }
+        }
+    }
+
+    &__header {
+        font: 32px/1 Georgia, Times, 'Times New Roman', serif;
+        background: $brown;
+        color: $white;
+        font-size: 2.133rem;
+        line-height: 1em;
+        text-align: center;
+        padding: 10px 0;
+    }
+
 }
