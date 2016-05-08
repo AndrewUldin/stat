@@ -15,51 +15,55 @@ var uglify = require('gulp-uglify');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
+var series = require('run-sequence');
 
-var env = (process.env.NODE_ENV === 'production' ? 'production' : 'development');
+function scripts(watch, production) {
+    if (production) {
+        process.env.NODE_ENV = 'production';
+    }
 
-// add custom browserify options here
-if (env == 'development') {
-    var customOpts = {
-        entries: ['./src/js/index.js'],
-        debug: true,
-        cache: {},
-        packageCache: {},
-        fullPaths: true // Requirement of watchify
-    };
-} else {
-    var customOpts = {
-        entries: ['./src/js/index.js'],
-        debug: false,
-        cache: {},
-        packageCache: {},
-        fullPaths: false
-    };
-}
-var opts = assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts))
-.transform('babelify', {presets: ['es2015', 'react']})
-.transform('reactify');
+    var bundler, rebundle;
+        bundler = browserify('./src/js/index.js', {
+            basedir: __dirname, 
+            debug: !production, 
+            cache: {}, // required for watchify
+            packageCache: {}, // required for watchify
+            fullPaths: watch // required to be true only for watchify
+        });
+    if (watch) {
+        bundler = watchify(bundler) 
+    }
+    bundler.on('log', function(msg) { console.log(msg); });
 
-gulp.task('js', bundle); // so you can run `gulp js` to build the file
-b.on('update', bundle); // on any dep update, runs the bundler
-b.on('log', gutil.log); // output build logs to terminal
+    // gutil.log.bind(gutil, 'Browserify Error')
+    bundler.transform('babelify', {presets: ['es2015', 'react']});
+    bundler.transform(reactify);
 
-function bundle() {
-    return b.bundle()
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(source('index.js'))
-        if (env == 'development') {
-            b.pipe(sourcemaps.init({
-                loadMaps: true
-            }))
-            .pipe(sourcemaps.write('./')) // writes .map file
-        } else {
-            b.pipe(buffer());
-            b.pipe(uglify());
+    rebundle = function() {
+        var stream = bundler.bundle().on('error', function(err) { console.log(err.message) });
+            stream = stream.pipe(source('index.js'));
+        if (production) {
+            stream = stream.pipe(buffer());
+            stream = stream.pipe(uglify());
         }
-        b.pipe(gulp.dest('./app/scripts'));
+        return stream.pipe(gulp.dest('./app/scripts'));
+    };
+
+    bundler.on('update', rebundle);
+    return rebundle();
 }
+
+gulp.task('js', function() {
+  return scripts(false);
+});
+
+gulp.task('js:build', function() {
+  return scripts(false, true);
+});
+
+gulp.task('js:watch', function(done) {
+  return scripts(true);
+});
 
 gulp.task('sass', function() {
     return gulp.src('./src/sass/*.scss')
@@ -69,18 +73,22 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./app/styles'));
 });
 
-gulp.task('sass:min', function () {
-    var processors = [
-        autoprefixer({browsers: ['last 1 version']}),
-        cssnano(),
-    ];
+gulp.task('sass:build', function () {
     return gulp.src('./app/styles/*.css')
-        .pipe(postcss(processors))
+        .pipe(postcss([
+            autoprefixer({browsers: ['last 1 version']}),
+            cssnano(),
+        ]))
         .pipe(gulp.dest('./app/styles'));
 });
 
-gulp.task('sass:watch', function () {
+gulp.task('sass:watch', function (done) {
     gulp.watch('./src/sass/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['js', 'sass:watch']);
+gulp.task('default', ['js:watch', 'sass', 'sass:watch']);
+gulp.task('build', function(done) {
+    series('sass', 'sass:build', 'js:build', done);
+});
+
+

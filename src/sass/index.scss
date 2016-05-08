@@ -7,22 +7,33 @@
 @import 'modules/card';
 
 body {
-    background-color: #ffffff;
-    background-image: url('../images/background.png');
-    background-position: left top;
     color: #37393A;
     font-family: 'Roboto Slab', serif;
 }
 
 .container {
-    max-width: 1240px;
-    width: 100%;
-    padding: 30px;
-    box-sizing: border-box;
-    margin: 0 auto;
+
     &__page {
         position: relative;
         @include cf();
+    }
+
+    &__wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+    }
+
+    &__body {
+        padding: 30px;
+    }
+
+    &__page_mode_graphics {
+        background-color: #ffffff;
+        background-image: url('../images/background.png');
+        background-position: left top;
+    }
+    &__page_mode_text {
+        border: 1px solid red;
     }
 }
 
