@@ -6,6 +6,7 @@
 @import 'modules/table';
 @import 'modules/map';
 @import 'modules/card';
+@import 'modules/bars';
 
 body {
     color: #37393A;
@@ -59,13 +60,13 @@ body {
     }
 
     &__header {
-        font: 32px/1 Georgia, Times, 'Times New Roman', serif;
+        font: 25px/1 Georgia, Times, 'Times New Roman', serif;
         background: $brown;
         color: $white;
         font-size: 2.133rem;
         line-height: 1em;
         text-align: center;
-        padding: 10px 0;
+        padding: 15px 0;
     }
 
 }

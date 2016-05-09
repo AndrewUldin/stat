@@ -10,9 +10,14 @@ var blockOne = {
     data: data.blockOne,
     app: require('./blockOne.jsx')
 }
+var blockTwo = {
+    data: data.blockTwo,
+    app: require('./blockTwo.jsx')
+}
 
 new innerText.app(innerText.data, document.getElementById('innerText'));
 new blockOne.app(blockOne.data, document.getElementById('blockOne'));
+new blockTwo.app(blockTwo.data, document.getElementById('blockTwo'));
 
 
 if ((!window.pluso || "function" != typeof window.pluso.start) && void 0 == window.ifpluso) {
