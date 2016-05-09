@@ -126,9 +126,7 @@ module.exports = React.createClass({
                     <div className="map__legend-label map__legend-label_num_2">{this.props.data.min}</div>
                 </div>
                 <div className="map__svg">
-                    <Isvg src="images/map.svg" uniquifyIDs={false} onLoad={this.attachHandlers}>
-                        <img src="images/map.png" />
-                    </Isvg>
+                    <Isvg src="images/map.svg" uniquifyIDs={false} onLoad={this.attachHandlers} />
                 </div>
             </div>
         );
