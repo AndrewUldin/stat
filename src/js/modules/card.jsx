@@ -65,7 +65,7 @@ module.exports = class Card extends React.Component {
             return  <div className="card__wrap">
                         <h1>{displayData.title}</h1>
                         <div className="card__info">
-                            <div className="card__photo"><img src={'images/heads/' + displayRegion + '.png'} /></div>
+                            <div className="card__photo"><img src={'images/heads/' + displayRegion + '.jpg'} /></div>
                             <div className="card__text">
                                 <div className="card__text-wrap">
                                     <h2>{displayData.head}</h2>
